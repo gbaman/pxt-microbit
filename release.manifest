@@ -1,0 +1,41 @@
+CACHE MANIFEST
+
+CACHE:
+/pxt-microbit/semantic.js
+/pxt-microbit/main.js
+/pxt-microbit/typescript.js
+/pxt-microbit/lzma/lzma_worker-min.js
+/pxt-microbit/jquery.js
+/pxt-microbit/blockly/blockly_compressed.js
+/pxt-microbit/blockly/blocks_compressed.js
+/pxt-microbit/blockly/msg/js/en.js
+/pxt-microbit/fuse/fuse.min.js
+/pxt-microbit/pxtlib.js
+/pxt-microbit/pxtblocks.js
+/pxt-microbit/pxteditor.js
+/pxt-microbit/pxtsim.js
+/pxt-microbit/pxtwinrt.js
+/pxt-microbit/semantic.css
+/pxt-microbit/custom.css
+/pxt-microbit/icons.css
+/pxt-microbit/fonts/icons.woff2
+/pxt-microbit/blockly/media/sprites.png
+/pxt-microbit/blockly/media/click.mp3
+/pxt-microbit/blockly/media/disconnect.wav
+/pxt-microbit/blockly/media/delete.mp3
+/pxt-microbit/images/microbit.bw.svg
+/pxt-microbit/images/newblock.png
+/pxt-microbit/images/newkodu.png
+/pxt-microbit/images/newtypescript.png
+/pxt-microbit/images/newvisualstudiocode.png
+
+/pxt-microbit/worker.js
+# ver Wed May 25 2016 14:56:29 GMT+0100 (BST)
+
+/pxt-microbit/target.json
+
+# External
+https://az416426.vo.msecnd.net/scripts/a/ai.0.js
+  
+NETWORK:
+*
