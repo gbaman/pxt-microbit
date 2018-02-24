@@ -18,80 +18,97 @@ The local server lets you to run the editor and serve the documentation from you
 ### Setup
 
 The following commands perform a one-time setup after synching the repo on your machine.
+* Note for any editing of the .cpp files, Yotto must be installed. Do do so, follow the instructions on [their site](http://docs.yottabuild.org/).
+* Install requirements for [pxt](https://github.com/Microsoft/pxt). Note the v0 branch must be used for pxt-microbit (add ``sudo`` for Mac/Linux shells).
+```
+npm install -g jake
+npm install -g typings
+```
 
-* install node.js 8.9.4 or higher
+* [Clone the pxt repository](https://help.github.com/articles/cloning-a-repository/) and set it to the v0 branch.
+```
+git clone https://github.com/microsoft/pxt
+cd pxt
+git checkout v0
+```
+
+* Install the pxt dependencies.
+```
+npm install
+typings install
+jake
+cd ../
+```
+
+* [Clone this repo](https://help.github.com/articles/cloning-a-repository/) to your computer.
+```
+git clone https://github.com/microsoft/pxt-microbit
+cd pxt-microbit
+```
 * install the PXT command line (add ``sudo`` for Mac/Linux shells).
 ```
 npm install -g pxt
 ```
-* install the microbit target
+* install the dependencies
 ```
-pxt target microbit
+npm install
+
 ```
+
+* Link pxt-microbit back to base pxt repo.
+```
+npm link ../pxt
+```
+Note the above command assumes the folder structure of   
+```
+       makecode
+          |
+  -----------------
+  |               |
+ pxt        pxt-microbit
+ ```
 
 ### Running
 
-Run this command to open a local web server (add ``sudo`` for Mac/Linux shells)
+Run this command from inside pxt-microbit to open a local web server (add ``sudo`` for Mac/Linux shells)
+```
+pxt serve --cloud
+```
+If the local server opens in the wrong browser, make sure to copy the URL containing the local token. 
+Otherwise, the editor will not be able to load the projects.
+
+If you need modify the `.cpp` files, enable yotta compilation by removing the ```--cloud``` flag (add ``sudo`` for Mac/Linux shells):
 ```
 pxt serve
 ```
 
-If the local server opens in the wrong browser, make sure to copy the URL containing the local token. 
-Otherwise, the editor will not be able to load the projects.
 
-The server assumes you have yotta installed. You can skip that requirement by adding ``--cloud``.
 
-```
-pxt serve --cloud
-```
-
-### Updates
+## Updates
 
 To update your PXT version and make sure you're running the latest tools, run (add ``sudo`` for Mac/Linux shells):
 ```
 pxt update
 ```
 
-More instructions are at https://github.com/Microsoft/pxt#running-a-target-from-localhost
+More instructions are at https://github.com/Microsoft/pxt#running-a-target-from-localhost 
 
-## Developer setup
+## Testing
 
-If you need to make source changes to ``pxt`` and ``pxt-microbit``, follow these instructions:
+The build also automatically runs the following checks:
 
-* clone https://github.com/Microsoft/pxt
-```
-git clone https://github.com/Microsoft/pxt
-```
-* checkout the ``v0`` branch in pxt
-```
-cd pxt
-git checkout v0
-```
-* ``npm install`` and run ``jake``
-```
-npm install
-jake
-```
-* clone https://github.com/Microsoft/pxt-microbit
-```
-cd ..
-git clone https://github.com/Microsoft/pxt-microbit
-```
-* ``npm install`` and link to the ``pxt`` folder
-```
-cd pxt-microbit
-npm install
-npm link ../pxt
-```
+* make sure the built-in packages compile
+* `pxt run` in `libs/lang-test*` - this will run the test in command line runner; 
+  there is a number of asserts in both of these
+* `pxt testdir` in `tests` - this makes sure all the files compile and generates .hex files
+* run the TD->TS converter on a number of test scripts from `microbit.co.uk` and make sure the results compile
 
-Both of those repoes are now ready to go. To start your local server, run
-```
-pxt serve
-```
-or, without yotta tools,
-```
-pxt serve --cloud
-```
+To test something on the device:
+
+* do a `pxt deploy` in `libs/lang-test*` - they should show `1` or `2` on the screen (and not unhappy face)
+* run `pxt testdir` in `tests` and deploy some of the hex files from `tests/built`
+
+The `lang-test0` source comes from the `pxt-core` package. It's also tested with `pxt run` there. 
 
 ## Repos 
 
